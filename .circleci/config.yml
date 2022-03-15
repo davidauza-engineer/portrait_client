@@ -4,6 +4,17 @@ orbs:
   node: circleci/node@5.0.1
 
 jobs:
+  typescript-lint:
+    executor:
+      name: node/default
+      tag: '14.19.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Lint TypeScript
+          command: npm run typescript-lint
+
   build:
     executor:
       name: node/default
@@ -26,9 +37,13 @@ jobs:
           command: npm run test
 
 workflows:
-  build_and_test:
+  lint_build_and_test:
     jobs:
-      - build
+      - typescript-lint
+      - build:
+          requires:
+            - typescript-lint
       - test:
           requires:
+            - typescript-lint
             - build
