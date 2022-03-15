@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "typescript-lint": "tslint -c tslint.json 'src/**/*.tsx'"
+    "typescript-lint": "tslint -c tslint.json 'src/**/*.tsx' 'src/**/*.ts'"
   },
   "eslintConfig": {
     "extends": [
