@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/davidauza-engineer/portrait_client/tree/develop.svg?style=svg)](https://circleci.com/gh/davidauza-engineer/portrait_client/tree/develop)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
