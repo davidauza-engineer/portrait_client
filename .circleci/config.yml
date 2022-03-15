@@ -1,0 +1,65 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.1
+
+jobs:
+  typescript-lint:
+    executor:
+      name: node/default
+      tag: '14.19.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Lint TypeScript
+          command: npm run typescript-lint
+
+  scss-lint:
+    executor:
+      name: node/default
+      tag: '14.19.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Lint SCSS
+          command: npm run scss-lint
+
+  test:
+    executor:
+      name: node/default
+      tag: '14.19.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+
+  build:
+    executor:
+      name: node/default
+      tag: '14.19.0'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Build Project
+          command: npm run build
+
+workflows:
+  lint_build_and_test:
+    jobs:
+      - typescript-lint
+      - scss-lint:
+          requires:
+            - typescript-lint
+      - test:
+          requires:
+            - typescript-lint
+            - scss-lint
+      - build:
+          requires:
+            - typescript-lint
+            - scss-lint
+            - test
