@@ -34,7 +34,21 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          command: npm run test
+          name: Setup Environment Variables
+          command: |
+            echo 'export CC_TEST_REPORTER_ID=$CC_TEST_REPORTER_ID' >> $BASH_ENV
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Run tests
+          command: |
+            ./cc-test-reporter before-build
+            npm run test -- --coverage
+            echo $CC_TEST_REPORTER_ID
+            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
 
   build:
     executor:
@@ -48,7 +62,7 @@ jobs:
           command: npm run build
 
 workflows:
-  lint_build_and_test:
+  lint_test_and_build:
     jobs:
       - typescript-lint
       - scss-lint:

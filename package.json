@@ -47,5 +47,13 @@
     "stylelint": "^14.5.3",
     "stylelint-config-standard-scss": "^3.0.0",
     "tslint": "^6.1.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/**/*.d.ts",
+      "!src/**/index.tsx",
+      "!src/**/reportWebVitals.ts"
+    ]
   }
 }
