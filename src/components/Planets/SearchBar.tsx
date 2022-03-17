@@ -7,23 +7,12 @@ import {
 import ResultBox from './ResultBox';
 import './search-bar.scss';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-interface Planet {
-  name: string
-  rotation_period: string
-  orbital_period: string
-  diameter: string
-  climate: string
-  gravity: string
-  terrain: string
-  surface_water: string
-  population: string
-}
+import { toast } from 'react-toastify';
+import { PlanetModel } from '../../models/planet.model';
+import { usePlanets } from '../../contexts/PlanetsContext';
 
 const SearchBar = () => {
-  const [planets, setPlanets] = useState<Planet[]>([]);
+  const [planets, setPlanets] = useState<PlanetModel[]>([]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement> ) => {
     axios.get(`${process.env.REACT_APP_API_URL}/v1/swapi/planets?planet%5Bname%5D=${event?.target?.value}`)
@@ -31,21 +20,35 @@ const SearchBar = () => {
         .catch(error => toast(error.message, { position: 'top-center', type: 'error' }));
   };
 
+  const handleBlur = (event: ChangeEvent<HTMLInputElement>) => {
+    setTimeout(() => {
+      setPlanets([]);
+      event.target.value = '';
+    }, 500);
+  };
+
+  const savedPlanets = usePlanets();
+
   return (
       <div className="d-flex justify-content-center search-box">
         <div className="w-75 mt-5 position-relative">
           <InputGroup>
-            <Input onChange={handleInputChange} aria-label='planet-input'/>
+            <Input onChange={handleInputChange} aria-label='planet-input' onBlur={handleBlur} />
             <InputGroupText>
               Type the name of your favorite planet!
             </InputGroupText>
           </InputGroup>
           { planets.length > 0 && (
               <div className="results-container position-absolute w-100">
-                { planets.map((planet, index) => <ResultBox text={planet?.name} key={index} />)}
+                { planets.map((newPlanet, index) => {
+                  if (savedPlanets.filter(planet => planet.name === newPlanet.name).length === 0) {
+                    return (<ResultBox planet={newPlanet} key={index} />);
+                  } else {
+                    return undefined;
+                  }
+                })}
               </div>
           )}
-          <ToastContainer />
         </div>
       </div>
   );
