@@ -20,7 +20,7 @@ const PlanetCard = ({ planet }: { planet: PlanetModel }) => {
               Name: {planet.name}
             </CardTitle>
             <CardSubtitle className="mb-2 text-muted" tag="h6">
-              Population: {parseInt(planet.population).toLocaleString()}
+              Population: {Number(planet.population).toLocaleString()}
             </CardSubtitle>
             <CardText>
               Rotation Period: {planet.rotation_period}<br />

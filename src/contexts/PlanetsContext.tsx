@@ -2,7 +2,7 @@ import React, { ReactNode, useContext, useState } from 'react';
 import { PlanetModel } from '../models/planet.model';
 
 const PlanetsContext = React.createContext([] as PlanetModel[]);
-const PlanetsUpdateContext = React.createContext((newPlanet: PlanetModel) => {});
+const PlanetsUpdateContext = React.createContext((newPlanet: PlanetModel) => undefined);
 
 export const usePlanets = () => {
   return useContext(PlanetsContext);
