@@ -3,11 +3,12 @@ import './App.scss';
 import Navbar from './components/layout/Navbar';
 import Planets from './components/Planets/Planets';
 import { PlanetsProvider } from './contexts/PlanetsContext';
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
       <PlanetsProvider>
-        <div className="app">
+        <div>
           <header className="bg-light">
             <Navbar/>
           </header>
@@ -15,6 +16,7 @@ function App() {
             <Planets/>
           </section>
         </div>
+        <ToastContainer />
       </PlanetsProvider>
 
   );
