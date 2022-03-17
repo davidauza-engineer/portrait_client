@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import Navbar from './components/layout/Navbar';
-import SearchBar from "./components/shared/SearchBar";
+import Planets from './components/Planets/Planets';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Navbar />
       </header>
       <section className="container">
-        <SearchBar label={'Type the name of your favorite planet!'} />
+        <Planets />
       </section>
     </div>
   );
