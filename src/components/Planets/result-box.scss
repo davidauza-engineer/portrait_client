@@ -1,0 +1,16 @@
+.result-box {
+  border: 1px solid lightgray;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eee;
+    text-decoration: underline;
+    text-decoration-color: lightgray;
+  }
+
+  .text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
