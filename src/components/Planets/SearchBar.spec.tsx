@@ -22,6 +22,6 @@ describe('SearchBar component', () => {
     const value = 'animal planet';
     const { input } = setup();
     fireEvent.change(input, { target: { value } });
-    expect(input.value).toBe(value)
+    expect((input as HTMLInputElement).value).toBe(value)
   });
 });
