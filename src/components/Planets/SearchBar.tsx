@@ -5,7 +5,7 @@ import {
   InputGroupText
 } from 'reactstrap';
 import ResultBox from './ResultBox';
-import './search-box.scss';
+import './search-bar.scss';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,7 +35,7 @@ const SearchBar = () => {
       <div className="d-flex justify-content-center search-box">
         <div className="w-75 mt-5 position-relative">
           <InputGroup>
-            <Input onChange={handleInputChange}/>
+            <Input onChange={handleInputChange} aria-label='planet-input'/>
             <InputGroupText>
               Type the name of your favorite planet!
             </InputGroupText>
