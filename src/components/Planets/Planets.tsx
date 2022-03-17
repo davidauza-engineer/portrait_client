@@ -1,8 +1,12 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import PlanetList from './PlanetsList';
 
 const Planets = () => (
-  <SearchBar />
+    <>
+      <SearchBar/>
+      <PlanetList/>
+    </>
 )
 
 export default Planets;

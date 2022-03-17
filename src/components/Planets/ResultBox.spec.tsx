@@ -1,18 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ResultBox from './ResultBox';
-
-const planet = {
-  name: 'portrait',
-  rotation_period: '1',
-  orbital_period: '1',
-  diameter: '1',
-  climate: 'cold',
-  gravity: '1',
-  terrain: 'plain',
-  surface_water: 'none',
-  population: '1',
-};
+import { defaultPlanet as planet } from '../../models/planet.model';
 
 describe('ResultBox component', () => {
   it('correctly renders the text prop', () => {

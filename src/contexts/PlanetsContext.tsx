@@ -18,6 +18,8 @@ export const PlanetsProvider = ({ children }: { children: ReactNode}) => {
   const updatePlanets = (newPlanet: PlanetModel) => {
     if (planets.filter(planet => planet.name === newPlanet.name).length === 0) {
       setPlanets([...planets, newPlanet]);
+    } else {
+      setPlanets(planets.filter(item => item !== newPlanet));
     }
   };
 
