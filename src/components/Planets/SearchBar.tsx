@@ -9,21 +9,10 @@ import './search-bar.scss';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-interface Planet {
-  name: string
-  rotation_period: string
-  orbital_period: string
-  diameter: string
-  climate: string
-  gravity: string
-  terrain: string
-  surface_water: string
-  population: string
-}
+import { PlanetModel } from '../../models/planet.model';
 
 const SearchBar = () => {
-  const [planets, setPlanets] = useState<Planet[]>([]);
+  const [planets, setPlanets] = useState<PlanetModel[]>([]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement> ) => {
     axios.get(`${process.env.REACT_APP_API_URL}/v1/swapi/planets?planet%5Bname%5D=${event?.target?.value}`)
@@ -42,7 +31,7 @@ const SearchBar = () => {
           </InputGroup>
           { planets.length > 0 && (
               <div className="results-container position-absolute w-100">
-                { planets.map((planet, index) => <ResultBox text={planet?.name} key={index} />)}
+                { planets.map((planet, index) => <ResultBox planet={planet} key={index} />)}
               </div>
           )}
           <ToastContainer />
