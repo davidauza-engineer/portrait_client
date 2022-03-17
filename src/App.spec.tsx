@@ -8,4 +8,10 @@ describe('App component', () => {
     const label = screen.getByText(/Portrait Client/i);
     expect(label).toBeInTheDocument();
   });
+
+  it('displays the SearchBar component', () =>  {
+    render(<App />)
+    const label = screen.getByText(/Type the name of your favorite planet!/i);
+    expect(label).toBeInTheDocument();
+  });
 });
