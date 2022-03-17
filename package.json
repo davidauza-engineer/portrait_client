@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.26.1",
     "stylelint": "^14.5.3",
     "stylelint-config-standard-scss": "^3.0.0",
     "tslint": "^6.1.3"
